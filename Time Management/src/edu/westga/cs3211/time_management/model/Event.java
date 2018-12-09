@@ -167,7 +167,7 @@ public class Event {
 	
 	private String formatDateAndTime(LocalDateTime date) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
-		return formatter.format(date);
+		return formatter.format(date); 
 	}
 
 	/** Generate a multi-line full string representation of the event.
