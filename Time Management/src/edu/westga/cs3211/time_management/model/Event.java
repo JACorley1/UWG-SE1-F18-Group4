@@ -16,7 +16,7 @@ public class Event {
 	private LocalDateTime endTime;
 	private String location;
 	private String description;
-	private List<String> attendees;
+	
 	private Visibility visibility;
 	
 	/** Creates a new Event
@@ -44,7 +44,7 @@ public class Event {
 	 * @param attendees list of the names of attendees for the event
 	 * @param visibility visibility of the event
 	 */
-	public Event(String name, LocalDateTime start, LocalDateTime end, String location, String description, List<String> attendees, Visibility visibility) {
+	public Event(String name, LocalDateTime start, LocalDateTime end, String location, String description, Visibility visibility) {
 		if(!EventDataValidator.checkName(name)) {
 			throw new IllegalArgumentException("Invalid name");
 		}
@@ -53,9 +53,6 @@ public class Event {
 		}
 		if(!EventDataValidator.checkEndTime(start, end)) {
 			throw new IllegalArgumentException("Invalid end time");
-		}
-		if(!EventDataValidator.checkAttendees(attendees)) {
-			throw new IllegalArgumentException("Invalid attendees");
 		}
 		if(location == null) {
 			throw new IllegalArgumentException("Invalid location");
@@ -71,7 +68,7 @@ public class Event {
 		this.endTime = end;
 		this.location = location;
 		this.description = description;
-		this.attendees = attendees;
+		
 		this.visibility = visibility;
 	}
 
@@ -130,17 +127,6 @@ public class Event {
 		return this.description;
 	}
 
-	/** return the list of names of attendees for the event
-	 * 
-	 * @precondition none
-	 * @postcondition none
-	 * 
-	 * @return the list of names of attendees for the event
-	 */
-	public List<String> getAttendees() {
-		return this.attendees;
-	}
-
 	/** return the visibility of the event
 	 * 
 	 * @precondition none
@@ -192,7 +178,7 @@ public class Event {
 		fullEventDetails += "Location: " + this.location + System.lineSeparator();
 		fullEventDetails += "Description: " + this.description + System.lineSeparator();
 		fullEventDetails += "Visibility: " + this.visibility + System.lineSeparator();
-		fullEventDetails += "Attendees: " + String.join(", ", this.attendees) + System.lineSeparator();
+		
 		
 		return fullEventDetails;
 	}

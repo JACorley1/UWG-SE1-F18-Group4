@@ -93,10 +93,7 @@ public class AddEvent {
     	else if(!EventDataValidator.checkStartTime(endTime)) {
     		errorText += "Start time is invalid" + System.lineSeparator();
     	}
-    	List<String> attendees = this.attendeesList.getItems();
-    	if(!EventDataValidator.checkAttendees(attendees)) {
-    		errorText += "List of attendee names is invalid" + System.lineSeparator();
-    	}
+    	
     	if(!errorText.isEmpty()) {
     		this.displayErrorMessage(errorText);
     		return;
@@ -112,7 +109,7 @@ public class AddEvent {
     	}
     	Visibility visibility = this.visibilityList.getValue();
     	
-    	Event newEvent = new Event(name, startTime, endTime, location, description, attendees, visibility);
+    	Event newEvent = new Event(name, startTime, endTime, location, description, visibility);
     	
     	List<Event> conflictingEvents = this.calendar.declareConflicts(newEvent);
     	
@@ -151,7 +148,7 @@ public class AddEvent {
         assert visibilityList != null : "fx:id=\"visibilityList\" was not injected: check your FXML file 'AddEvent.fxml'.";
         assert nameLabel != null : "fx:id=\"nameLabel\" was not injected: check your FXML file 'AddEvent.fxml'.";
 
-        this.attendeesList.setItems(FXCollections.observableArrayList());
+     
         this.visibilityList.setItems(FXCollections.observableArrayList());
         this.visibilityList.getItems().add(Visibility.PUBLIC);
         this.visibilityList.getItems().add(Visibility.PRIVATE);
