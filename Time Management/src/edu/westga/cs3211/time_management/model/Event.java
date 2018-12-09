@@ -3,6 +3,7 @@ package edu.westga.cs3211.time_management.model;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 
 /** Store basic information for an event.
  * 
@@ -160,16 +161,21 @@ public class Event {
 	 */
 	@Override
 	public String toString() {
-		return this.name + System.lineSeparator() +
-			   this.formatDateAndTime(this.startTime) + " - " + this.formatDateAndTime(this.endTime) + System.lineSeparator() +
-			   this.location;
+		return this.name + System.lineSeparator() 
+			+  this.formatDate(this.startTime) + " - " + this.formatDate(this.endTime) + System.lineSeparator()
+			+  this.location;
 	}
 	
-	private String formatDateAndTime(LocalDateTime date) {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
-		return formatter.format(date); 
+	private String formatDate(LocalDateTime date) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE MMM dd, yyyy");
+		return formatter.format(date);
 	}
 
+	private String formatTime(LocalDateTime date) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm a");
+		return formatter.format(date);
+	}
+	
 	/** Generate a multi-line full string representation of the event.
 	 * 
 	 * @precondition none
@@ -179,9 +185,10 @@ public class Event {
 	 */
 	public String toStringFull() {
 		String fullEventDetails = "";
+		String at = " at ";
 		fullEventDetails += "Name: " + this.name + System.lineSeparator();
-		fullEventDetails += "Start time: " + this.startTime + System.lineSeparator();
-		fullEventDetails += "End time: " + this.endTime + System.lineSeparator();
+		fullEventDetails += "Start time: " + this.formatDate(this.startTime) + at + this.formatTime(this.startTime) + System.lineSeparator();
+		fullEventDetails += "End time: " + this.formatDate(this.endTime) + at + this.formatTime(this.endTime) + System.lineSeparator();
 		fullEventDetails += "Location: " + this.location + System.lineSeparator();
 		fullEventDetails += "Description: " + this.description + System.lineSeparator();
 		fullEventDetails += "Visibility: " + this.visibility + System.lineSeparator();
