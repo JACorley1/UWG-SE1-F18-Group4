@@ -1,6 +1,7 @@
 package edu.westga.cs3211.time_management.model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /** Store basic information for an event.
@@ -150,7 +151,6 @@ public class Event {
 		return this.visibility;
 	}
 
-
 	/** Convert the Event to a String representation.
 	 * 
 	 * @precondition none
@@ -160,9 +160,16 @@ public class Event {
 	 */
 	@Override
 	public String toString() {
-		return this.name + "(" + this.startTime + "," + this.endTime + ")";
+		return this.name + System.lineSeparator() +
+			   this.formatDateAndTime(this.startTime) + " - " + this.formatDateAndTime(this.endTime) + System.lineSeparator() +
+			   this.location;
 	}
 	
+	private String formatDateAndTime(LocalDateTime date) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+		return formatter.format(date);
+	}
+
 	/** Generate a multi-line full string representation of the event.
 	 * 
 	 * @precondition none
