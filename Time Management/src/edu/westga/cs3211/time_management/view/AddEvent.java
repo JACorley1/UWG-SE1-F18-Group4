@@ -151,7 +151,7 @@ public class AddEvent {
         assert visibilityList != null : "fx:id=\"visibilityList\" was not injected: check your FXML file 'AddEvent.fxml'.";
         assert nameLabel != null : "fx:id=\"nameLabel\" was not injected: check your FXML file 'AddEvent.fxml'.";
 
-        this.attendeesList.setItems(FXCollections.observableArrayList());
+     
         this.visibilityList.setItems(FXCollections.observableArrayList());
         this.visibilityList.getItems().add(Visibility.PUBLIC);
         this.visibilityList.getItems().add(Visibility.PRIVATE);
