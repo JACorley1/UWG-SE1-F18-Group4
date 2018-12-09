@@ -21,7 +21,9 @@ class TestToString {
 		
 		String result = event.toString();
 		
-		String expectedString = "Bob(" + start + "," + end + ")";
+		String expectedString = "Bob" + System.lineSeparator()
+							  + "Mon Dec 10, 2018 - Tue Dec 11, 2018" + System.lineSeparator()
+							  + "location";
 		assertEquals(expectedString, result);
 		
 	}

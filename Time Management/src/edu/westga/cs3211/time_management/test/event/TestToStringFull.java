@@ -3,6 +3,7 @@ package edu.westga.cs3211.time_management.test.event;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -18,18 +19,18 @@ class TestToStringFull {
 		LocalDateTime end = start.plusDays(1);
 		
 		Event event = new Event("Bob", start, end, "location", "description", Visibility.PUBLIC);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm a");
 		
 		String result = event.toStringFull();
 
 		String expectedString = "";
 		expectedString += "Name: Bob" + System.lineSeparator();
-		expectedString += "Start time: " + start + System.lineSeparator();
-		expectedString += "End time: " + end + System.lineSeparator();
+		expectedString += "Start time: " + "Mon Dec 10, 2018 at " + formatter.format(start) + System.lineSeparator();
+		expectedString += "End time: " + "Tue Dec 11, 2018 at " + formatter.format(end) + System.lineSeparator();
 		expectedString += "Location: location" + System.lineSeparator();
 		expectedString += "Description: description" + System.lineSeparator();
 		expectedString += "Visibility: Public" + System.lineSeparator();
-		expectedString += "Attendees: Alice, Trudy" + System.lineSeparator();
-		
+
 		assertEquals(expectedString, result);
 	}
 
