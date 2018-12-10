@@ -37,7 +37,8 @@
       <TextField fx:id="nameText" layoutX="103.0" layoutY="15.0" prefHeight="25.0" prefWidth="174.0" promptText="Event Name" />
       <DatePicker fx:id="startTimeDate" editable="false" layoutX="103.0" layoutY="50.0" prefHeight="25.0" prefWidth="198.0" promptText="Choose a Start date..." />
       <DatePicker fx:id="endTimeDate" editable="false" layoutX="103.0" layoutY="85.0" prefHeight="25.0" prefWidth="198.0" promptText="Choose a End date..." />
-      <TextField fx:id="locationText" layoutX="103.0" layoutY="120.0" prefHeight="25.0" prefWidth="174.0" promptText="Where?" />     
+      <TextField fx:id="locationText" layoutX="103.0" layoutY="120.0" prefHeight="25.0" prefWidth="174.0" promptText="Where?" />
+      <TextField fx:id="descriptionText" layoutX="102.0" layoutY="155.0" prefHeight="25.0" prefWidth="174.0" promptText="Event details" />     
       <ComboBox fx:id="visibilityList" layoutX="102.0" layoutY="190.0" prefHeight="25.0" prefWidth="174.0" />
       <Button layoutX="103.0" layoutY="223.0" mnemonicParsing="false" onAction="#addEvent" prefHeight="25.0" prefWidth="67.0" text="Add">
          <font>
@@ -47,6 +48,5 @@
          <font>
             <Font size="13.0" />
          </font></Button>
-      <TextField layoutX="102.0" layoutY="155.0" prefHeight="25.0" prefWidth="174.0" promptText="Event details" />
    </children>
 </AnchorPane>
