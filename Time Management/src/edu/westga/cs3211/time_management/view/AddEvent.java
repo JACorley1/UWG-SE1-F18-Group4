@@ -44,7 +44,7 @@ public class AddEvent {
     @FXML private DatePicker startTimeDate;
     @FXML private DatePicker endTimeDate;
     @FXML private TextField locationText;
-    @FXML private TextArea descriptionText;
+    @FXML private TextField descriptionText;
     @FXML private ComboBox<Visibility> visibilityList;
     @FXML private Calendar calendar;
 
