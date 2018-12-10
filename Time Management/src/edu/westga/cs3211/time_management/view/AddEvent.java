@@ -81,23 +81,27 @@ public class AddEvent {
     
     private Event setupNewEvent() {
     	String errorText = "";
-    	String invalidStartTime = "Start time is invalid";
+    	LocalDateTime startTime = null;
+    	LocalDateTime endTime = null;
     	String name = this.nameText.getText();
+    	
     	if (!EventDataValidator.checkName(name)) {
     		errorText += "Name is invalid" + System.lineSeparator();
     	}
-    	LocalDateTime startTime = LocalDateTime.of(this.startTimeDate.getValue(), LocalTime.of(5, 0));
-    	LocalDateTime endTime = LocalDateTime.of(this.endTimeDate.getValue(), LocalTime.of(9, 0));
-    	if (!EventDataValidator.checkStartTime(startTime)) {
-    		errorText += invalidStartTime + System.lineSeparator();
-    	} else if (!EventDataValidator.checkStartTime(endTime)) {
-    		errorText += invalidStartTime + System.lineSeparator();
-    	}
-    	
+    	if ((this.startTimeDate.getValue() != null) && (this.endTimeDate.getValue() != null)) {
+    		startTime = LocalDateTime.of(this.startTimeDate.getValue(), LocalTime.of(5, 0));
+        	endTime = LocalDateTime.of(this.endTimeDate.getValue(), LocalTime.of(9, 0));
+        	if (!EventDataValidator.checkStartTime(startTime)) {
+        		errorText += "Invalid start time" + System.lineSeparator();
+        	} else if (!EventDataValidator.checkEndTime(startTime, endTime)) {
+        		errorText += "Invalid end time" + System.lineSeparator();
+        	}
+    	} else {
+    		errorText += "You must enter a end and start date";
+    	}	
     	if (!errorText.isEmpty()) {
     		this.displayErrorMessage(errorText);
     	}
-    	
     	String location = this.locationText.getText();
     	if (location == null) {
     		location = "";
@@ -107,7 +111,6 @@ public class AddEvent {
     		description = "";
     	}
     	Visibility visibility = this.visibilityList.getValue();
-    	
     	Event newEvent = new Event(name, startTime, endTime, location, description, visibility);
     	return newEvent;
     }
