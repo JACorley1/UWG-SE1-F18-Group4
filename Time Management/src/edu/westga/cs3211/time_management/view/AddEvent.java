@@ -22,6 +22,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 /** Codebehind for the AddEvent Scene.
@@ -33,44 +34,23 @@ public class AddEvent {
     @FXML private ResourceBundle resources;
     @FXML private URL location;
     
-    @FXML private Label visibilityLabel;
-    @FXML private Label locationLabel;
-    @FXML private Label attendeesLabel;
-    @FXML private Label endTimeLabel;
-    @FXML private Label startTimeLabel;
-    @FXML private Label descriptionLabel;
     @FXML private Label nameLabel;
-    @FXML private TextField locationText;
-    @FXML private TextField descriptionText;
+    @FXML private Label startTimeLabel;
+    @FXML private Label endTimeLabel;
+    @FXML private Label locationLabel;
+    @FXML private Label descriptionLabel;
+    @FXML private Label visibilityLabel;
     @FXML private TextField nameText;
     @FXML private DatePicker startTimeDate;
     @FXML private DatePicker endTimeDate;
-    @FXML private TextField newAttendeeText;
-    @FXML private ComboBox<String> attendeesList;
+    @FXML private TextField locationText;
+    @FXML private TextArea descriptionText;
     @FXML private ComboBox<Visibility> visibilityList;
-    
-	private Calendar calendar;
+    @FXML private Calendar calendar;
 
     private void displayErrorMessage(String errorMessage) {
 		Alert alert = new Alert(AlertType.ERROR, errorMessage);
 		alert.showAndWait();
-    }
-    
-    @FXML
-    void addAttendee(ActionEvent event) {
-    	String name = this.newAttendeeText.getText();
-		if(EventDataValidator.checkName(name)) {
-    		this.attendeesList.getItems().add(name);
-    	}
-		else {
-			this.displayErrorMessage("Invalid name for new attendee: " + name);
-		}
-    }
-
-    @FXML
-    void removeAttendee(ActionEvent event) {
-    	String name = this.attendeesList.getValue();
-    	this.attendeesList.getItems().remove(name);
     }
 
     @FXML
@@ -136,13 +116,10 @@ public class AddEvent {
         assert locationText != null : "fx:id=\"locationText\" was not injected: check your FXML file 'AddEvent.fxml'.";
         assert startTimeDate != null : "fx:id=\"startTimeDate\" was not injected: check your FXML file 'AddEvent.fxml'.";
         assert locationLabel != null : "fx:id=\"locationLabel\" was not injected: check your FXML file 'AddEvent.fxml'.";
-        assert attendeesLabel != null : "fx:id=\"attendeesLabel\" was not injected: check your FXML file 'AddEvent.fxml'.";
         assert descriptionText != null : "fx:id=\"descriptionText\" was not injected: check your FXML file 'AddEvent.fxml'.";
         assert nameText != null : "fx:id=\"nameText\" was not injected: check your FXML file 'AddEvent.fxml'.";
         assert endTimeDate != null : "fx:id=\"endTimeDate\" was not injected: check your FXML file 'AddEvent.fxml'.";
-        assert newAttendeeText != null : "fx:id=\"newAttendeeText\" was not injected: check your FXML file 'AddEvent.fxml'.";
         assert endTimeLabel != null : "fx:id=\"endTimeLabel\" was not injected: check your FXML file 'AddEvent.fxml'.";
-        assert attendeesList != null : "fx:id=\"attendeesList\" was not injected: check your FXML file 'AddEvent.fxml'.";
         assert startTimeLabel != null : "fx:id=\"startTimeLabel\" was not injected: check your FXML file 'AddEvent.fxml'.";
         assert descriptionLabel != null : "fx:id=\"descriptionLabel\" was not injected: check your FXML file 'AddEvent.fxml'.";
         assert visibilityList != null : "fx:id=\"visibilityList\" was not injected: check your FXML file 'AddEvent.fxml'.";
@@ -154,8 +131,6 @@ public class AddEvent {
         this.visibilityList.getItems().add(Visibility.PRIVATE);
         this.visibilityList.getItems().add(Visibility.FRIENDS_ONLY);
         this.visibilityList.setValue(Visibility.PUBLIC);
-        this.startTimeDate.setValue(LocalDate.now());
-        this.endTimeDate.setValue(LocalDate.now());
     }
 
 	public void setCalendar(Calendar calendar) {
