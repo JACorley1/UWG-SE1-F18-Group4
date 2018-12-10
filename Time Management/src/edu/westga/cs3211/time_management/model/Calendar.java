@@ -10,6 +10,7 @@ import java.util.List;
 public class Calendar {
 	
 	private ArrayList<Event> events;
+	private final String nullEvent = "Event cannot be null";
 	
 	/** Return the collection of events in the calendar
 	 * 
@@ -40,7 +41,7 @@ public class Calendar {
 	 */
 	public void addEvent(Event event) {
 		if (event == null) {
-			throw new IllegalArgumentException("Event cannot be null");
+			throw new IllegalArgumentException(this.nullEvent);
 		}
 		
 		this.events.add(event);
@@ -71,15 +72,15 @@ public class Calendar {
 	 */
 	public List<Event> declareConflicts(Event event) {
 		if (event == null) {
-			throw new IllegalArgumentException("Event cannot be null");
+			throw new IllegalArgumentException(this.nullEvent);
 		}
 		List<Event> conflicts = new ArrayList<Event>();
 		
-		for(Event current: this.events) {
-			if(!event.getStartTime().isBefore(current.getStartTime()) && !event.getStartTime().isAfter(current.getEndTime())) {
+		for (Event current: this.events) {
+			if (!event.getStartTime().isBefore(current.getStartTime()) && !event.getStartTime().isAfter(current.getEndTime())) {
 				conflicts.add(current);
 			}
-			if(!event.getEndTime().isBefore(current.getStartTime()) && !event.getEndTime().isAfter(current.getEndTime())) {
+			if (!event.getEndTime().isAfter(current.getStartTime()) && !event.getEndTime().isAfter(current.getEndTime())) {
 				conflicts.add(current);
 			}
 		}
