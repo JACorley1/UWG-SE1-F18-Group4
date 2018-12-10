@@ -60,7 +60,6 @@ public class AddEvent {
 	private Calendar calendar;
 	private TimeManagementViewModel timeViewModel;
 
-
 	@FXML
 	void cancel(ActionEvent event) {
 		((Node) (event.getSource())).getScene().getWindow().hide();
@@ -70,7 +69,7 @@ public class AddEvent {
 	void addEvent(ActionEvent event) {
 		Visibility visibility = this.visibilityList.getValue();
 		Event newEvent = this.timeViewModel.setupNewEvent(visibility);
-		
+
 		List<Event> conflictingEvents = this.calendar.declareConflicts(newEvent);
 
 		String eventText = newEvent.toStringFull();
@@ -90,7 +89,6 @@ public class AddEvent {
 			((Node) (event.getSource())).getScene().getWindow().hide();
 		}
 	}
-
 
 	@FXML
 	void initialize() {
@@ -118,7 +116,7 @@ public class AddEvent {
 		this.endTimeDate.valueProperty().bindBidirectional(this.timeViewModel.getEndTimeProperty());
 		this.locationText.textProperty().bindBidirectional(this.timeViewModel.getLocationProperty());
 		this.visibilityList.itemsProperty().bind(this.timeViewModel.getVisibilityListProperty());
-		this.visibilityList.setValue(Visibility.PUBLIC);	
+		this.visibilityList.setValue(Visibility.PUBLIC);
 	}
 
 	/**

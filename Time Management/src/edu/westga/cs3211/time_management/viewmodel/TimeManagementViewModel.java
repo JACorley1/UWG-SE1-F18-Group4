@@ -27,13 +27,13 @@ import javafx.scene.control.Alert.AlertType;
  */
 public class TimeManagementViewModel {
 	private Calendar calendar;
-	private final StringProperty nameText;
-	private final ObjectProperty<LocalDate> startTime;
-	private final ObjectProperty<LocalDate> endTime;
-	private final StringProperty locationProperty;
+	private StringProperty nameText;
+	private ObjectProperty<LocalDate> startTime;
+	private ObjectProperty<LocalDate> endTime;
+	private StringProperty locationProperty;
+	private StringProperty description;
+	private ListProperty<Visibility> visibilityList;
 	private String errorMessage;
-	private final StringProperty description;
-	private final ListProperty<Visibility> visibilityList;
 	private String eventSummaryAndConflictText;
 
 	/**
@@ -41,19 +41,7 @@ public class TimeManagementViewModel {
 	 * 
 	 */
 	public TimeManagementViewModel() {
-
-		this.nameText = new SimpleStringProperty();
-		this.startTime = new SimpleObjectProperty<LocalDate>();
-		this.endTime = new SimpleObjectProperty<LocalDate>();
-		this.locationProperty = new SimpleStringProperty();
-		this.description = new SimpleStringProperty();
-		this.visibilityList = new SimpleListProperty<Visibility>(FXCollections.observableArrayList());
-		this.calendar = new Calendar();
-		this.errorMessage = "";
-		this.visibilityList.add(Visibility.PUBLIC);
-		this.visibilityList.add(Visibility.PRIVATE);
-		this.visibilityList.add(Visibility.FRIENDS_ONLY);
-
+		this.initialize();
 	}
 
 	/**
@@ -89,10 +77,10 @@ public class TimeManagementViewModel {
 			}
 		} else {
 			this.errorMessage += "You must enter a end and start date";
-
 		}
 		if (!this.errorMessage.isEmpty()) {
 			this.displayErrorMessage(this.errorMessage);
+			this.errorMessage = "";
 		}
 
 		String location = this.locationProperty.get();
@@ -201,5 +189,19 @@ public class TimeManagementViewModel {
 	private void displayErrorMessage(String errorMessage) {
 		Alert alert = new Alert(AlertType.ERROR, errorMessage);
 		alert.showAndWait();
+	}
+
+	private void initialize() {
+		this.nameText = new SimpleStringProperty();
+		this.startTime = new SimpleObjectProperty<LocalDate>();
+		this.endTime = new SimpleObjectProperty<LocalDate>();
+		this.locationProperty = new SimpleStringProperty();
+		this.description = new SimpleStringProperty();
+		this.visibilityList = new SimpleListProperty<Visibility>(FXCollections.observableArrayList());
+		this.calendar = new Calendar();
+		this.errorMessage = "";
+		this.visibilityList.add(Visibility.PUBLIC);
+		this.visibilityList.add(Visibility.PRIVATE);
+		this.visibilityList.add(Visibility.FRIENDS_ONLY);
 	}
 }
