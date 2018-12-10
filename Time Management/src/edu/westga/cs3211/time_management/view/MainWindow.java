@@ -57,15 +57,16 @@ public class MainWindow {
     
     @FXML
     void removeEvent(ActionEvent event) throws IOException {
-    	
+    	Event eventSelected = this.eventList.getSelectionModel().getSelectedItem();
     	Alert alert = new Alert(AlertType.CONFIRMATION);
     	alert.setTitle("Delete Event");
     	alert.setHeaderText("Delete Event");
-    	alert.setContentText("Click OK, if you would like to remove event.");
+    	alert.setContentText("Click OK, to remove." + System.lineSeparator() + System.lineSeparator() 
+    		+ this.eventDetailsText.getText());
     	Optional<ButtonType> result = alert.showAndWait();
     	
    
-    	Event eventSelected = this.eventList.getSelectionModel().getSelectedItem();
+    	
     	if (result.isPresent() && result.get() == ButtonType.OK) {
     		this.calendar.removeEvent(eventSelected);
     		this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
