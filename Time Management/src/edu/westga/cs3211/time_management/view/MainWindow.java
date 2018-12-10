@@ -2,6 +2,7 @@ package edu.westga.cs3211.time_management.view;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import edu.westga.cs3211.time_management.Main;
@@ -13,6 +14,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
@@ -50,6 +55,24 @@ public class MainWindow {
         this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
     }
     
+    @FXML
+    void removeEvent(ActionEvent event) throws IOException {
+    	
+    	Alert alert = new Alert(AlertType.CONFIRMATION);
+    	alert.setTitle("Delete Event");
+    	alert.setHeaderText("Delete Event");
+    	alert.setContentText("Click OK, if you would like to remove event.");
+    	Optional<ButtonType> result = alert.showAndWait();
+    	
+   
+    	Event eventSelected = this.eventList.getSelectionModel().getSelectedItem();
+    	if (result.isPresent() && result.get() == ButtonType.OK) {
+    		this.calendar.removeEvent(eventSelected);
+    		this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
+    		this.eventDetailsText.setText("");
+    	}
+    }
+    		
     @FXML
     void selectEvent(MouseEvent event) {
     	Event eventSelected = this.eventList.getSelectionModel().getSelectedItem();

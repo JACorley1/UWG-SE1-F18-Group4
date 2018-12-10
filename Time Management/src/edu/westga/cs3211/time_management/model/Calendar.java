@@ -18,7 +18,7 @@ public class Calendar {
 	 * 
 	 * @return the collection of events in the calendar
 	 */
-	public ArrayList<Event> getEvents(){
+	public ArrayList<Event> getEvents() {
 		return this.events;
 	}
 	
@@ -44,6 +44,20 @@ public class Calendar {
 		}
 		
 		this.events.add(event);
+	}
+	
+	/** Deletes an event from the calendar
+	 * 
+	 * @precondition event != null
+	 * @postcondition getEvents().size() == getEvents().size()@pre + 1
+	 * 
+	 * @param event event to be removed from the calendar
+	 */
+	public void removeEvent(Event event) {
+		if (event == null) {
+			throw new IllegalArgumentException("Event cannot be null");
+		}
+		this.events.remove(event);
 	}
 	
 	/** Finds and returns the list of events in the calendar that would conflict with the specified event
