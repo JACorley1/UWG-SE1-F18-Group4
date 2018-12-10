@@ -65,9 +65,9 @@ public class AddEvent {
     	String eventText = newEvent.toStringFull();
     	String conflictText = "";
     	for (Event currEvent : conflictingEvents) {
-    		conflictText += currEvent.toString() + System.lineSeparator();
+    		conflictText += currEvent.toString() + System.lineSeparator() + System.lineSeparator();
     	}
-    	String eventSummaryAndConflictText = "NEW EVENT DETAILS" + System.lineSeparator() + eventText + System.lineSeparator() + "CONFLICTING EVENTS" + conflictText;
+    	String eventSummaryAndConflictText = "NEW EVENT DETAILS" + System.lineSeparator() + eventText + System.lineSeparator() + "CONFLICTING EVENTS\n" + conflictText;
 		Alert alert = new Alert(AlertType.CONFIRMATION, eventSummaryAndConflictText);
 		alert.setTitle("Create New Event?");
 		
