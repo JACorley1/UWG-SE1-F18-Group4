@@ -6,12 +6,11 @@ import java.time.LocalDateTime;
 /**
  * Validate Event information.
  * 
- * @author Dylan Knox, Kyle Riggs, Cody Graham, Tyler Wingfield, Jeremiah
- *         Liscum, Joseph Fuller, Jonathan Corley, Tristen Rivera, Tyler Scott,
- *         Dexter Tarver, Daniel Jeselnik, Dylan McCleskey, Justin Smith
+ * @author Tyler Scott, Nolan Williams, Dexter Tarver
+ * 
  */
 public class EventDataValidator {
-	
+
 	/**
 	 * Checks if the even name is valid
 	 * 
@@ -32,10 +31,11 @@ public class EventDataValidator {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * Checks the start time, determining if it is before the current system time.
-	 * This is used when displaying user warning when creating events startng in the past.
+	 * This is used when displaying user warning when creating events starting in
+	 * the past.
 	 * 
 	 * @param startTime the starting time of the event
 	 * 
@@ -48,46 +48,53 @@ public class EventDataValidator {
 		if (startTime == null) {
 			return false;
 		}
-		
+
 		return !startTime.isBefore(LocalDateTime.now());
 	}
-	
+
 	/**
-	 * @authors TylerWingfield, JeremiahLiscum, JosephFuller
-	 * @param endTime, startTime
+	 * Checks the end time, determining if it is after the current start time. This
+	 * is used when displaying user warning when creating events starting in the
+	 * past.
+	 * 
+	 * @param endTime   the end time
+	 * 
+	 * @param startTime the start time
 	 * 
 	 * @precondition startTime != null
 	 * 
-	 * @return true  if endTime is a valid time after startTime
-	 * 		   false if endTime is not or is not after startTime
+	 * @return true if endTime is a valid time after startTime false if endTime is
+	 *         not or is not after startTime
 	 */
 	public static boolean checkEndTime(LocalDateTime startTime, LocalDateTime endTime) {
-		if(startTime == null) {
+		if (startTime == null) {
 			throw new IllegalArgumentException("startTime cannot be null");
 		}
-		if(endTime == null) {
+		if (endTime == null) {
 			return false;
 		}
 		return endTime.isAfter(startTime);
 	}
 
-	/** Checks the list of attendees
+	/**
+	 * Checks the list of attendees
 	 * 
 	 * @precondition none
 	 * @postcondition none
-	 * 					
-	 * @param String names the names of the attendees
 	 * 
-	 * @return true  if list contains valid names (see checkName for more details)
-	 * 		   false if list contains one or more invalid names (see checkName for more details)
+	 * @param names the names of the attendees
+	 * 
+	 * @return true if list contains valid names (see checkName for more details)
+	 *         false if list contains one or more invalid names (see checkName for
+	 *         more details)
 	 */
 	public static boolean checkAttendees(List<String> names) {
 		if (names == null) {
 			return false;
 		}
-		
-		for(String name : names) {
-			if(!EventDataValidator.checkName(name)) {
+
+		for (String name : names) {
+			if (!EventDataValidator.checkName(name)) {
 				return false;
 			}
 		}
