@@ -1,18 +1,14 @@
 package edu.westga.cs3211.time_management.view;
 
 import java.net.URL;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 import edu.westga.cs3211.time_management.model.Calendar;
 import edu.westga.cs3211.time_management.model.Event;
-import edu.westga.cs3211.time_management.model.EventDataValidator;
 import edu.westga.cs3211.time_management.model.Visibility;
 import edu.westga.cs3211.time_management.viewmodel.TimeManagementViewModel;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -64,10 +60,6 @@ public class AddEvent {
 	private Calendar calendar;
 	private TimeManagementViewModel timeViewModel;
 
-	private void displayErrorMessage(String errorMessage) {
-		Alert alert = new Alert(AlertType.ERROR, errorMessage);
-		alert.showAndWait();
-	}
 
 	@FXML
 	void cancel(ActionEvent event) {
@@ -76,8 +68,9 @@ public class AddEvent {
 
 	@FXML
 	void addEvent(ActionEvent event) {
-
-		Event newEvent = this.setupNewEvent();
+		Visibility visibility = this.visibilityList.getValue();
+		Event newEvent = this.timeViewModel.setupNewEvent(visibility);
+		
 		List<Event> conflictingEvents = this.calendar.declareConflicts(newEvent);
 
 		String eventText = newEvent.toStringFull();
@@ -98,41 +91,6 @@ public class AddEvent {
 		}
 	}
 
-	private Event setupNewEvent() {
-		String errorText = "";
-		LocalDateTime startTime = null;
-		LocalDateTime endTime = null;
-		String name = this.nameText.getText();
-
-		if (!EventDataValidator.checkName(name)) {
-			errorText += "Name is invalid" + System.lineSeparator();
-		}
-		if ((this.startTimeDate.getValue() != null) && (this.endTimeDate.getValue() != null)) {
-			startTime = LocalDateTime.of(this.startTimeDate.getValue(), LocalTime.of(5, 0));
-			endTime = LocalDateTime.of(this.endTimeDate.getValue(), LocalTime.of(9, 0));
-			if (!EventDataValidator.checkStartTime(startTime)) {
-				errorText += "Invalid start time" + System.lineSeparator();
-			} else if (!EventDataValidator.checkEndTime(startTime, endTime)) {
-				errorText += "Invalid end time" + System.lineSeparator();
-			}
-		} else {
-			errorText += "You must enter a end and start date";
-		}
-		if (!errorText.isEmpty()) {
-			this.displayErrorMessage(errorText);
-		}
-		String location = this.locationText.getText();
-		if (location == null) {
-			location = "";
-		}
-		String description = this.descriptionText.getText();
-		if (description == null) {
-			description = "";
-		}
-		Visibility visibility = this.visibilityList.getValue();
-		Event newEvent = new Event(name, startTime, endTime, location, description, visibility);
-		return newEvent;
-	}
 
 	@FXML
 	void initialize() {
@@ -152,16 +110,15 @@ public class AddEvent {
 		this.timeViewModel = new TimeManagementViewModel();
 		this.bindToViewModel();
 
-
 	}
 
 	private void bindToViewModel() {
-		this.nameText.textProperty().bind(this.timeViewModel.getNameProperty());
-		this.startTimeDate.valueProperty().bind(this.timeViewModel.getStartTimeProperty());
-		this.endTimeDate.valueProperty().bind(this.timeViewModel.getEndTimeProperty());
-		this.locationText.textProperty().bind(this.timeViewModel.getLocationProperty());
+		this.nameText.textProperty().bindBidirectional(this.timeViewModel.getNameProperty());
+		this.startTimeDate.valueProperty().bindBidirectional(this.timeViewModel.getStartTimeProperty());
+		this.endTimeDate.valueProperty().bindBidirectional(this.timeViewModel.getEndTimeProperty());
+		this.locationText.textProperty().bindBidirectional(this.timeViewModel.getLocationProperty());
 		this.visibilityList.itemsProperty().bind(this.timeViewModel.getVisibilityListProperty());
-		this.visibilityList.setValue(Visibility.PUBLIC);
+		this.visibilityList.setValue(Visibility.PUBLIC);	
 	}
 
 	/**

@@ -2,8 +2,6 @@ package edu.westga.cs3211.time_management.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.Locale;
 
 /**
  * Store basic information for an event.
