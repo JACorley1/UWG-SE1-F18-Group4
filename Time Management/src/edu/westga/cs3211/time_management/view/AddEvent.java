@@ -62,6 +62,8 @@ public class AddEvent {
 	@FXML
     private Button addButton;
 	@FXML
+    private Label requiredLabel;
+	@FXML
 	private Calendar calendar;
 	private TimeManagementViewModel timeViewModel;
 
@@ -127,6 +129,8 @@ public class AddEvent {
 	private void bindGuiInteraction() {
 		BooleanBinding enableAddButton = Bindings.or(this.nameText.textProperty().isEmpty(), this.startTimeDate.valueProperty().isNull().or(this.endTimeDate.valueProperty().isNull()));
 		this.addButton.disableProperty().bind(enableAddButton);
+		BooleanBinding enabledRequiredLabel = Bindings.or(this.nameText.textProperty().isEmpty(), this.startTimeDate.valueProperty().isNull().or(this.endTimeDate.valueProperty().isNull()));
+		this.requiredLabel.visibleProperty().bind(enabledRequiredLabel);
 	}
 
 	/**
