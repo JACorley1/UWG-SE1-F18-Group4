@@ -10,15 +10,15 @@
 
 <AnchorPane minHeight="269.0" minWidth="300.0" prefHeight="269.0" prefWidth="319.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs3211.time_management.view.AddEvent">
    <children>
-      <Label fx:id="nameLabel" layoutX="46.0" layoutY="19.0" text="Name: ">
+      <Label fx:id="nameLabel" layoutX="40.0" layoutY="19.0" text="*Name: ">
          <font>
             <Font size="15.0" />
          </font></Label>
-      <Label fx:id="startTimeLabel" layoutX="20.0" layoutY="54.0" text="Start Date: ">
+      <Label fx:id="startTimeLabel" layoutX="14.0" layoutY="54.0" text="*Start Date: ">
          <font>
             <Font size="15.0" />
          </font></Label>
-      <Label fx:id="endTimeLabel" layoutX="26.0" layoutY="89.0" text="End Date: ">
+      <Label fx:id="endTimeLabel" layoutX="20.0" layoutY="89.0" text="*End Date: ">
          <font>
             <Font size="15.0" />
          </font></Label>
