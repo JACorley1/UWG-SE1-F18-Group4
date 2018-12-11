@@ -1,9 +1,9 @@
 package edu.westga.cs3211.time_management.test.event;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +16,6 @@ class TestConstructor {
 	void testInvalidName() {	
 		LocalDateTime start = LocalDateTime.now().plusDays(1);
 		LocalDateTime end = start.plusDays(1);
-		List<String> attendees = List.of();
 		
 		assertThrows(
 						IllegalArgumentException.class, 
@@ -30,8 +29,7 @@ class TestConstructor {
 	void testInvalidStartTime() {		
 		LocalDateTime start = LocalDateTime.now().plusDays(1);
 		LocalDateTime end = start.plusDays(1);
-		List<String> attendees = List.of();
-			
+
 		assertThrows(
 						IllegalArgumentException.class, 
 						()->{
@@ -43,7 +41,6 @@ class TestConstructor {
 	@Test
 	void testInvalidEndTime() {		
 		LocalDateTime start = LocalDateTime.now().plusDays(1);
-		List<String> attendees = List.of();
 			
 		assertThrows(
 						IllegalArgumentException.class, 
@@ -57,7 +54,6 @@ class TestConstructor {
 	void testNullLocation() {		
 		LocalDateTime start = LocalDateTime.now().plusDays(1);
 		LocalDateTime end = start.plusDays(1);
-		List<String> attendees = List.of();
 			
 		assertThrows(
 						IllegalArgumentException.class, 
@@ -71,7 +67,6 @@ class TestConstructor {
 	void testNullDescription() {		
 		LocalDateTime start = LocalDateTime.now().plusDays(1);
 		LocalDateTime end = start.plusDays(1);
-		List<String> attendees = List.of();
 			
 		assertThrows(
 						IllegalArgumentException.class, 
@@ -85,7 +80,6 @@ class TestConstructor {
 	void testNullVisibility() {		
 		LocalDateTime start = LocalDateTime.now().plusDays(1);
 		LocalDateTime end = start.plusDays(1);
-		List<String> attendees = List.of();
 			
 		assertThrows(
 						IllegalArgumentException.class, 

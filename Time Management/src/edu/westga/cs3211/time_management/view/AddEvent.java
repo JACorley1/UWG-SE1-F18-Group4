@@ -9,11 +9,14 @@ import edu.westga.cs3211.time_management.model.Calendar;
 import edu.westga.cs3211.time_management.model.Event;
 import edu.westga.cs3211.time_management.model.Visibility;
 import edu.westga.cs3211.time_management.viewmodel.TimeManagementViewModel;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -56,6 +59,8 @@ public class AddEvent {
 	private TextField descriptionText;
 	@FXML
 	private ComboBox<Visibility> visibilityList;
+	@FXML
+    private Button addButton;
 	@FXML
 	private Calendar calendar;
 	private TimeManagementViewModel timeViewModel;
@@ -107,7 +112,7 @@ public class AddEvent {
 
 		this.timeViewModel = new TimeManagementViewModel();
 		this.bindToViewModel();
-
+		this.bindGuiInteraction();
 	}
 
 	private void bindToViewModel() {
@@ -117,6 +122,11 @@ public class AddEvent {
 		this.locationText.textProperty().bindBidirectional(this.timeViewModel.getLocationProperty());
 		this.visibilityList.itemsProperty().bind(this.timeViewModel.getVisibilityListProperty());
 		this.visibilityList.setValue(Visibility.PUBLIC);
+	}
+	
+	private void bindGuiInteraction() {
+		BooleanBinding enableAddButton = Bindings.or(this.nameText.textProperty().isEmpty(), this.startTimeDate.valueProperty().isNull().or(this.endTimeDate.valueProperty().isNull()));
+		this.addButton.disableProperty().bind(enableAddButton);
 	}
 
 	/**

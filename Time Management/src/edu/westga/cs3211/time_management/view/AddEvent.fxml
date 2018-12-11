@@ -40,7 +40,7 @@
       <TextField fx:id="locationText" layoutX="103.0" layoutY="120.0" prefHeight="25.0" prefWidth="174.0" promptText="Where?" />
       <TextField fx:id="descriptionText" layoutX="102.0" layoutY="155.0" prefHeight="25.0" prefWidth="174.0" promptText="Event details" />     
       <ComboBox fx:id="visibilityList" layoutX="102.0" layoutY="190.0" prefHeight="25.0" prefWidth="174.0" />
-      <Button layoutX="103.0" layoutY="223.0" mnemonicParsing="false" onAction="#addEvent" prefHeight="25.0" prefWidth="67.0" text="Add">
+      <Button fx:id="addButton" layoutX="103.0" layoutY="223.0" mnemonicParsing="false" onAction="#addEvent" prefHeight="25.0" prefWidth="67.0" text="Add">
          <font>
             <Font size="13.0" />
          </font></Button>

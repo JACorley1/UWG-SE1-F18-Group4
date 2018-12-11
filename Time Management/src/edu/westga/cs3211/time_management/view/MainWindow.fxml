@@ -25,7 +25,7 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <Button layoutX="567.0" layoutY="77.0" mnemonicParsing="false" onAction="#removeEvent" prefHeight="27.0" prefWidth="71.0" text="Remove">
+            <Button fx:id="removeButton" layoutX="567.0" layoutY="77.0" mnemonicParsing="false" onAction="#removeEvent" prefHeight="27.0" prefWidth="71.0" text="Remove">
          <font>
             <Font size="14.0" />
          </font></Button>

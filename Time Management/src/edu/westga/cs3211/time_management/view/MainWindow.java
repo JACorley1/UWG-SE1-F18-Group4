@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import edu.westga.cs3211.time_management.Main;
 import edu.westga.cs3211.time_management.model.Event;
 import edu.westga.cs3211.time_management.viewmodel.TimeManagementViewModel;
+import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -38,6 +40,8 @@ public class MainWindow {
 	private ListView<Event> eventList;
 	@FXML
 	private TextArea eventDetailsText;
+	@FXML
+    private Button removeButton;
 
 	private TimeManagementViewModel timeViewModel;
 
@@ -55,7 +59,6 @@ public class MainWindow {
 		AddEvent addEventDialog = loader.getController();
 		addEventDialog.setCalendar(this.timeViewModel.getCalendar());
 		addEventStage.showAndWait();
-
 		this.eventList.setItems(FXCollections.observableArrayList(this.timeViewModel.getCalendarEvents()));
 	}
 
@@ -88,8 +91,23 @@ public class MainWindow {
 	void initialize() {
 		assert this.eventList != null : "fx:id=\"eventList\" was not injected: check your FXML file 'MainWindow.fxml'.";
 		assert this.eventDetailsText != null : "fx:id=\"eventDetailsText\" was not injected: check your FXML file 'MainWindow.fxml'.";
-
+		
 		this.timeViewModel = new TimeManagementViewModel();
 		this.eventList.setItems(FXCollections.observableArrayList(this.timeViewModel.getCalendarEvents()));
+		this.bindGuiInteraction();
+	}
+	
+	private void bindGuiInteraction() {
+		
+		BooleanBinding enableRemoveButton = javafx.beans.binding.Bindings.isNull(this.eventList.getSelectionModel().selectedItemProperty());
+		this.removeButton.disableProperty().bind(enableRemoveButton);
 	}
 }
+	
+	
+	
+	
+	
+	
+	
+
