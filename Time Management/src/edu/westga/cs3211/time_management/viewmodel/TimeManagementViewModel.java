@@ -62,7 +62,7 @@ public class TimeManagementViewModel {
 	 */
 	public Event setupNewEvent(Visibility visible) {
 		LocalDateTime startTime = null;
-		LocalDateTime endTime = null;
+		LocalDateTime endTime = null; 
 		String name = this.nameText.get();
 		if (!EventDataValidator.checkName(name)) {
 			this.errorMessage += "Name is invalid" + System.lineSeparator();

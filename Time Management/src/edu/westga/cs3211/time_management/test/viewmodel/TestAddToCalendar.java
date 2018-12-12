@@ -17,22 +17,17 @@ class TestAddToCalendar {
 	@Test
 	void addToCalendar() {
 		TimeManagementViewModel vModel = new TimeManagementViewModel();
-		LocalTime startTime = LocalTime.now();
-		LocalTime endTime = LocalTime.now();
 		LocalDate date = LocalDate.of(1, 2, 3);
-		LocalDateTime start = LocalDateTime.of(date, startTime);
-		LocalDateTime end = LocalDateTime.of(date, endTime);
+		LocalDateTime start = LocalDateTime.of(2030, 1, 1, 0, 0);
+		LocalDateTime end = start.plusDays(1);
 		String location = "test";
-		String description = "test";
+		String description = "test";  
 		String name ="test";
 		Visibility visibility = Visibility.PUBLIC;
 		
 		Event event = new Event(name, start, end, location, description, visibility);
-		vModel.addEventToCalendar(event);
-		var calendar = vModel.getCalendar();
-		var collection = calendar.getEvents();
-		
-		assertTrue(collection.size() == 1);
+		vModel.addEventToCalendar(event); 
+		assertEquals(1, vModel.getCalendar().getEvents().size());
 	}
 
 }
