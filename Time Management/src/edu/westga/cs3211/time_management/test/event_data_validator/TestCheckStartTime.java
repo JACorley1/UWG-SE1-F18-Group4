@@ -37,7 +37,7 @@ class TestCheckStartTime {
 		
 		boolean result = EventDataValidator.checkStartTime(currentTime);
 		
-		assertTrue(result);
+		assertFalse(result);
 	}
 	
 	@Test

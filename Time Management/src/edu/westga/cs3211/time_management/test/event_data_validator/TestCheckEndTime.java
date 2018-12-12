@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import edu.westga.cs3211.time_management.model.EventDataValidator;
@@ -47,7 +48,7 @@ class TestCheckEndTime {
 		LocalDate date = LocalDate.of(1, 2, 3);
 		LocalDateTime end = LocalDateTime.of(date, endTime);
 		
-		assertThrows(IllegalArgumentException.class, () -> EventDataValidator.checkEndTime(null, end));
+		Assertions.assertThrows(IllegalArgumentException.class, () -> EventDataValidator.checkEndTime(null, end));
 	}
 	
 	@Test
