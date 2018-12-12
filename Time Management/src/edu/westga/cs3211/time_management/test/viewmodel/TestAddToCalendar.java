@@ -2,9 +2,9 @@ package edu.westga.cs3211.time_management.test.viewmodel;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
-import java.time.LocalTime;
+
 
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +17,7 @@ class TestAddToCalendar {
 	@Test
 	void addToCalendar() {
 		TimeManagementViewModel vModel = new TimeManagementViewModel();
-		LocalDate date = LocalDate.of(1, 2, 3);
+		
 		LocalDateTime start = LocalDateTime.of(2030, 1, 1, 0, 0);
 		LocalDateTime end = start.plusDays(1);
 		String location = "test";
