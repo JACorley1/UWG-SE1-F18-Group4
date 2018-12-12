@@ -13,7 +13,7 @@ class TestToString {
 
 	@Test
 	void test() {
-		LocalDateTime start = LocalDateTime.now().plusDays(1);
+		LocalDateTime start = LocalDateTime.of(2030, 1, 1, 0, 0);
 		LocalDateTime end = start.plusDays(1);
 		
 		Event event = new Event("Bob", start, end, "location", "description", Visibility.PUBLIC);
@@ -21,7 +21,7 @@ class TestToString {
 		String result = event.toString();
 		
 		String expectedString = "Bob" + System.lineSeparator()
-							  + "Mon Dec 10, 2018 - Tue Dec 11, 2018" + System.lineSeparator()
+							  + "Tue Jan 01, 2030 - Wed Jan 02, 2030" + System.lineSeparator()
 							  + "location";
 		assertEquals(expectedString, result);
 		

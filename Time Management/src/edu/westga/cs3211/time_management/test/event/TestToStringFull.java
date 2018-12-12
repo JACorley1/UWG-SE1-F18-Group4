@@ -14,7 +14,8 @@ class TestToStringFull {
 
 	@Test
 	void test() {
-		LocalDateTime start = LocalDateTime.now().plusDays(1);
+		
+		LocalDateTime start = LocalDateTime.of(2030, 1, 1, 0, 0);
 		LocalDateTime end = start.plusDays(1);
 		
 		Event event = new Event("Bob", start, end, "location", "description", Visibility.PUBLIC);
@@ -24,8 +25,8 @@ class TestToStringFull {
 
 		String expectedString = "";
 		expectedString += "Name: Bob" + System.lineSeparator();
-		expectedString += "Start time: " + "Mon Dec 10, 2018 at " + formatter.format(start) + System.lineSeparator();
-		expectedString += "End time: " + "Tue Dec 11, 2018 at " + formatter.format(end) + System.lineSeparator();
+		expectedString += "Start time: " + "Tue Jan 01, 2030 at " + formatter.format(start) + System.lineSeparator();
+		expectedString += "End time: " + "Wed Jan 02, 2030 at " + formatter.format(end) + System.lineSeparator();
 		expectedString += "Location: location" + System.lineSeparator();
 		expectedString += "Description: description" + System.lineSeparator();
 		expectedString += "Visibility: Public" + System.lineSeparator();
